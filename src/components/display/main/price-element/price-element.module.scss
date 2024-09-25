@@ -1,0 +1,44 @@
+.element {
+	@apply w-full bg-zinc-800 cursor-pointer px-5 py-4 hover:transform hover:-translate-y-1 border-2 border-solid border-transparent transition-all duration-300 hover:border-indigo-700 rounded-md shadow-lg flex justify-between;
+	.name {
+		@apply text-lg font-semibold;
+	}
+	.categories {
+		@apply flex items-center gap-3 mt-1;
+		.category {
+			@apply text-sm px-1.5 py-0.5 bg-zinc-600 text-gray-100 rounded-md;
+		}
+	}
+
+	.price {
+		@apply flex items-center space-x-1;
+	}
+}
+
+@media screen and (max-width: 470px) {
+	.element {
+		.name {
+			@apply text-base;
+		}
+		.categories {
+			.category {
+				@apply text-xs;
+			}
+		}
+	}
+}
+@media screen and (max-width: 430px) {
+	.element {
+		@apply px-5 py-2 grid grid-cols-2;
+		.name {
+		}
+		.categories {
+			@apply flex-col items-start gap-1;
+			.category {
+			}
+		}
+		.price {
+			@apply justify-center;
+		}
+	}
+}

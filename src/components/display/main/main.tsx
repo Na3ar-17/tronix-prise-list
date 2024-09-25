@@ -1,9 +1,9 @@
 import { usePriceList } from '../../../api/usePriceList'
 import { Navbar } from '../../common/navbar/navbar'
 import { Filters } from './filters/filters'
+import styles from './main.module.scss'
 import { PriceElement } from './price-element/price-element'
 import { Wrapper } from './wrapper/wrapper'
-
 export const Main = () => {
 	const {
 		data,
@@ -19,24 +19,22 @@ export const Main = () => {
 	} = usePriceList()
 	const filteredData = data?.filter(el => el.price >= price) || []
 	return (
-		<main className='pb-[100px]'>
+		<main className={styles.main}>
 			<Navbar />
-			<div className='mt-8'>
+			<div className={styles.content}>
 				<Filters
 					price={price}
 					onCategoryChange={onCategoryChange}
 					onPriceChangeDebounced={onPriceChangeDebounced}
 					togglePriceOrder={togglePriceOrder}
 				/>
-				<div className='mt-5'>
+				<div className={styles.data}>
 					{isLoading ? (
-						<div className='flex justify-center text-xl font-bold'>
-							Loading...
-						</div>
+						<div className={styles.info}>Loading...</div>
 					) : error ? (
-						<div className='text-center text-red-500'>{error}</div>
+						<div className='text-center'>{error}</div>
 					) : filteredData.length ? (
-						<div className='grid grid-cols-2 gap-5 mx-auto place-items-center w-[90%]'>
+						<div className={styles.elements}>
 							{filteredData.map((el, i) => (
 								<Wrapper description={el.description} key={i}>
 									<PriceElement data={el} />
@@ -44,9 +42,7 @@ export const Main = () => {
 							))}
 						</div>
 					) : (
-						<div className='flex justify-center text-xl font-bold'>
-							No items match the price criteria
-						</div>
+						<div className={styles.info}>No items match the price criteria</div>
 					)}
 				</div>
 				{data?.length &&
@@ -57,7 +53,7 @@ export const Main = () => {
 						<button
 							disabled={isMoreLoading}
 							onClick={() => takeMore(12)}
-							className='px-3 py-2 rounded-md disabled:opacity-80 disabled:cursor-not-allowed transition-all duration-200 hover:bg-opacity-80 active:bg-indigo-800 active:scale-95 bg-indigo-600 text-lg font-semibold block mx-auto mt-10'
+							className={styles.button}
 						>
 							{isMoreLoading ? 'Loading...' : 'Show more'}
 						</button>

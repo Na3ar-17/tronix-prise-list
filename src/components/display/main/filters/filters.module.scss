@@ -1,0 +1,40 @@
+.filters {
+	@apply w-[90%] mx-auto flex px-6 py-3 justify-between items-center bg-zinc-800 rounded-md;
+	.category {
+		@apply flex flex-col;
+	}
+
+	.price {
+		@apply flex flex-col items-center;
+		.actions {
+			@apply flex items-center gap-5;
+		}
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.filters {
+		@apply w-[95%];
+	}
+}
+
+@media screen and (max-width: 945px) {
+	.filters {
+		@apply w-[98%];
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.filters {
+		.price {
+			.actions {
+				@apply flex-col;
+			}
+		}
+	}
+}
+@media screen and (max-width: 480px) {
+	.filters {
+		@apply flex-col text-center gap-1;
+	}
+}

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { categoriesData } from '../../../../data/categories.data'
-
+import styles from './filters.module.scss'
 interface IProps {
 	onCategoryChange: (e: ChangeEvent<HTMLSelectElement>) => void
 	onPriceChangeDebounced: (e: ChangeEvent<HTMLInputElement>) => void
@@ -15,8 +15,8 @@ export const Filters = ({
 	togglePriceOrder,
 }: IProps) => {
 	return (
-		<div className='w-[90%] mx-auto flex px-6 py-3 justify-between items-center bg-zinc-800 rounded-md'>
-			<div className='flex flex-col'>
+		<div className={styles.filters}>
+			<div className={styles.category}>
 				<label className='text-gray-300 font-semibold mb-2'>
 					Filter by Category
 				</label>
@@ -32,12 +32,12 @@ export const Filters = ({
 					))}
 				</select>
 			</div>
-			<div>
-				<div className='flex flex-col items-center'>
-					<label className='text-gray-300 font-semibold mb-2'>
-						Sort by Price
-					</label>
-					<div className='flex items-center gap-5'>
+			<div className={styles.price}>
+				<label className='text-gray-300 font-semibold mb-2'>
+					Sort by Price
+				</label>
+				<div className={styles.actions}>
+					<div>
 						<input
 							type='range'
 							id='price'
@@ -45,16 +45,17 @@ export const Filters = ({
 							min='1'
 							max='2500'
 							onChange={onPriceChangeDebounced}
+							className='mr-4'
 						/>
 						<output className='w-[50px]'>{price}</output>
-						<select
-							onChange={togglePriceOrder}
-							className='w-48 bg-zinc-700 text-gray-100 p-2 rounded-md'
-						>
-							<option value='asc'>Low to High</option>
-							<option value='desc'>High to Low</option>
-						</select>
 					</div>
+					<select
+						onChange={togglePriceOrder}
+						className='w-48 bg-zinc-700 text-gray-100 p-2 rounded-md'
+					>
+						<option value='asc'>Low to High</option>
+						<option value='desc'>High to Low</option>
+					</select>
 				</div>
 			</div>
 		</div>
