@@ -12,3 +12,8 @@
 	height: 100%;
 	@apply bg-black/40;
 }
+@media screen and (max-width: 650px) {
+	.content {
+		@apply w-[90%];
+	}
+}
